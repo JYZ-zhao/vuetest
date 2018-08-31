@@ -1,31 +1,67 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <!-------------------------------->
-    <!--3.使用helloworld组件标签-->
-    <HelloWorld/>
+  <div>
+    <header class="site-header jumbotron">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1>请发表对Vue的评论</h1>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <!--将添加数据的方法传递给子组件，供子组件调用-->
+      <Add :addComment="addComment"/>
+      <!--将数据传递给子组件-->
+      <List :comments="comments"/>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+  import Add from './components/Add'
+  import List from './components/List'
 
-export default {
-  name: 'App',
+  export default {
 
-  components: {
-    HelloWorld
+    data() {
+      return {
+        comments: [//数据在哪个组件，操作数据的行为（方法）就应该定义在哪个组件
+
+          {
+            name: 'Bob',
+            content: 'Vue 还不错'
+          },
+          {
+            name: 'ZY ',
+            content: 'Vue easy'
+          },
+          {
+            name: 'ZZZ',
+            content: 'Vue so so '
+          },
+          {
+            name: 'WYN ',
+            content: 'Vue nice'
+          }
+        ]
+      }
+    },
+    methods: {
+      //添加评论
+
+      //将这个方法传递给子组件 :addComment="addComment"
+      addComment(comment) {
+        this.comments.unshift(comment)
+      }
+    },
+    components: {
+      Add,
+      List
+    }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
