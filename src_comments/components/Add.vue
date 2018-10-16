@@ -58,7 +58,7 @@
         //使用父组件提供的方法添加到comments
         this.addComment(comment)
 
-        //4.清除输入
+        //4.清除输入  清除输入框中的值，方便下次输入
         this.name = ''
         this.content = ''
 
